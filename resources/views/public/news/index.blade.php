@@ -11,13 +11,13 @@
     }
 
     /* ── Page Hero (Sama persis dengan halaman Pengumuman biar konsisten) ── */
-    .page-hero {
+    /* .page-hero {
         background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%);
         padding: 60px 60px;
         position: relative;
         overflow: hidden;
         color: white;
-    }
+    } */
     .page-hero::before {
         content: ''; position: absolute; top: -60px; right: -60px;
         width: 240px; height: 240px; border-radius: 50%;
