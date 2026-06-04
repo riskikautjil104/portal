@@ -1,0 +1,273 @@
+/* SMA NEGERI 5 MOROTAI - Design System */
+
+/* VARIABLES */
+:root {
+    /* COLORS */
+    --primary-dark: #1A3A6B;
+    --primary-light: #4A90E2;
+    --primary-very-light: #E8F0FE;
+    
+    --white: #FFFFFF;
+    --bg-light: #F8F9FA;
+    --border-light: #E9ECEF;
+    --text-secondary: #6C757D;
+    --text-dark: #212529;
+    
+    --success: #198754;
+    --warning: #FFC107;
+    --danger: #DC3545;
+    
+    /* TYPOGRAPHY */
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Inter', sans-serif;
+    
+    /* SPACING */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-secondary);
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    line-height: 1.6;
+}
+
+/* TYPOGRAPHY */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.375rem;
+    font-weight: 600;
+}
+
+p {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: var(--spacing-md);
+}
+
+small {
+    font-size: 0.8125rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+}
+
+/* HEADER */
+header {
+    background-color: var(--primary-dark);
+    padding: var(--spacing-md) var(--spacing-lg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: var(--white);
+    margin: 0;
+}
+
+header small {
+    color: var(--primary-light);
+}
+
+/* NAVIGATION */
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--primary-light);
+}
+
+/* BUTTONS */
+.btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-dark);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #163056;
+}
+
+.btn-secondary {
+    background-color: var(--primary-light);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background-color: #3a7acb;
+}
+
+.btn-success {
+    background-color: var(--success);
+    color: var(--white);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: var(--white);
+}
+
+/* CARDS */
+.card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: var(--spacing-lg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    border-bottom: 2px solid var(--primary-light);
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.card-body {
+    padding: var(--spacing-md);
+}
+
+/* FORMS */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-md);
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px var(--primary-very-light);
+}
+
+label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+/* FOOTER */
+footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: var(--spacing-2xl) var(--spacing-lg);
+    margin-top: auto;
+}
+
+footer h5 {
+    color: var(--white);
+}
+
+footer a {
+    color: var(--primary-light);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.375rem;
+    }
+    
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    header {
+        padding: var(--spacing-md) var(--spacing-md);
+    }
+}
+
+/* UTILITY CLASSES */
+.text-center {
+    text-align: center;
+}
+
+.text-white {
+    color: var(--white);
+}
+
+.bg-primary {
+    background-color: var(--primary-dark);
+}
+
+.bg-light {
+    background-color: var(--primary-very-light);
+}
+
+.gap-1 { gap: var(--spacing-sm); }
+.gap-2 { gap: var(--spacing-md); }
+.gap-3 { gap: var(--spacing-lg); }
+
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+
+.p-1 { padding: var(--spacing-sm); }
+.p-2 { padding: var(--spacing-md); }
+.p-3 { padding: var(--spacing-lg); }
