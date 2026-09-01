@@ -37,9 +37,28 @@ class NewsController extends Controller
             $validated['image'] = $request->file('image')->store('news', 'public');
         }
 
-        News::create($validated);
+        $news = News::create($validated);
 
-        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil dibuat!');
+        // Kirim Push Notification FCM ke seluruh pengguna (Siswa, Guru, Satpam) jika langsung diterbitkan
+        if ($news->status === 'published') {
+            try {
+                \App\Services\FcmService::sendToTopic(
+                    'all_users',
+                    'Berita Baru: ' . $news->title,
+                    Str::limit(strip_tags($news->content), 120),
+                    [
+                        'type' => 'news',
+                        'slug' => (string) $news->slug,
+                        'id' => (string) $news->id,
+                        'title' => 'Berita Baru: ' . $news->title,
+                    ]
+                );
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('[FCM News Store] ' . $e->getMessage());
+            }
+        }
+
+        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil dibuat dan diterbitkan!');
     }
 
     public function edit(News $news)
@@ -67,7 +86,27 @@ class NewsController extends Controller
             $validated['image'] = $request->file('image')->store('news', 'public');
         }
 
+        $wasDraft = $news->status !== 'published';
         $news->update($validated);
+
+        // Jika berita baru saja diubah statusnya menjadi published, tembakkan notifikasi
+        if ($wasDraft && $news->status === 'published') {
+            try {
+                \App\Services\FcmService::sendToTopic(
+                    'all_users',
+                    'Berita Baru: ' . $news->title,
+                    Str::limit(strip_tags($news->content), 120),
+                    [
+                        'type' => 'news',
+                        'slug' => (string) $news->slug,
+                        'id' => (string) $news->id,
+                        'title' => 'Berita Baru: ' . $news->title,
+                    ]
+                );
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('[FCM News Update] ' . $e->getMessage());
+            }
+        }
 
         return redirect()->route('admin.news.index')->with('success', 'Berita berhasil diperbarui!');
     }
